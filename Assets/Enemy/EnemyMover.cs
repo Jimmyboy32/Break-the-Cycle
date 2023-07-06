@@ -6,18 +6,21 @@ public class EnemyMover : MonoBehaviour
 {
     // Creation of a list for the multiple waypoints of the grid
     [SerializeField] List<Waypoint> path = new List<Waypoint>();
+    [SerializeField] float waitTime = 1f;
   
     void Start()
     {
-        PrintWaypointName(); 
+        StartCoroutine(FollowPath());
     }
 
-    void PrintWaypointName()
+    // Coroutine that waits X second after giving waypoint coordinates
+    IEnumerator FollowPath()
     {
         // For all the waypoints in the established trajectory
         foreach(Waypoint waypoint in path)
         {
-            Debug.Log(waypoint.name);
+            transform.position = waypoint.transform.position;
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
