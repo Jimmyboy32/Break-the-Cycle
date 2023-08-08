@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
+    // Sets tower has instantiated object
     [SerializeField] GameObject towerPrefab; 
     // If tower can be placed on tile
     [SerializeField] bool isPlaceable;

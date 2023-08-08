@@ -26,7 +26,7 @@ public class EnemyMover : MonoBehaviour
 
             transform.LookAt(endPosition);
 
-            //Will repeat as long as destination has not been reached (travelPercent < 1f)
+            // Will repeat as long as destination has not been reached (travelPercent < 1f)
             while (travelPercent < 1f)
             {
                 travelPercent += Time.deltaTime * speed;
