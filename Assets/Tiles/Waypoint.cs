@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
+    [SerializeField] GameObject towerPrefab; 
     // If tower can be placed on tile
     [SerializeField] bool isPlaceable;
     void OnMouseDown()
     {
         if (isPlaceable)
         {
-            // Gives the name of tile if a tower is placeable on it
-            Debug.Log(transform.name);
+            // Instantiate a tower on the clicked tile
+            Instantiate(towerPrefab, transform.position, Quaternion.identity);
+            isPlaceable = false;
         }
     }
 }

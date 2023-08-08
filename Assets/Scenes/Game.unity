@@ -1850,7 +1850,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: (0, 1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5371036414861296274, guid: 1e7d220d765a0e748a9b2da28a39397b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e7d220d765a0e748a9b2da28a39397b, type: 3}
 --- !u!4 &1483865080 stripped
 Transform:
