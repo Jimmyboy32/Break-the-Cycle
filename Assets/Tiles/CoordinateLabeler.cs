@@ -6,13 +6,20 @@ using TMPro;
 [ExecuteAlways] // Always execute script even when in editing mode
 public class CoordinateLabeler : MonoBehaviour
 {
+    [SerializeField] Color defaultColor = Color.white;
+    [SerializeField] Color blockedColor = Color.gray;
+
     TextMeshPro label; // variable label of type TMP
     Vector2Int coordinates = new Vector2Int(); // Vector 2 Int for coordinates
+    Waypoint waypoint;
 
     // Awake is first in order of execution
     void Awake()
     {
-        label = GetComponent<TextMeshPro>(); 
+        label = GetComponent<TextMeshPro>();
+        label.enabled = false; // We want coordinates to be disabled on Awake
+
+        waypoint = GetComponentInParent<Waypoint>();
         DisplayCoordinates();
     }
 
@@ -23,6 +30,29 @@ public class CoordinateLabeler : MonoBehaviour
         {
             DisplayCoordinates();
             UpdateObjectName();
+        }
+        ColorCoordinates();
+        ToggleLabels();
+    }
+
+    // Toggle coodinate labels on/off for debugging
+    void ToggleLabels()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            label.enabled = !label.IsActive();
+        }
+    }
+    // Change label color depending on if object can be placed on grid location or not
+    void ColorCoordinates()
+    {
+        if (waypoint.IsPlaceable)
+        {
+            label.color = defaultColor;
+        }
+        else
+        {
+            label.color = blockedColor;
         }
     }
 
