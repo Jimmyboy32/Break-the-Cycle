@@ -10,7 +10,28 @@ public class EnemyMover : MonoBehaviour
   
     void Start()
     {
+        FindPath();
+        ReturnToStart();
         StartCoroutine(FollowPath());
+    }
+
+    // Clearing of previous path and each new enemy will follow new path
+    void FindPath()
+    {
+        path.Clear();
+
+        GameObject[] waypoints = GameObject.FindGameObjectsWithTag("Path");
+
+        foreach(GameObject waypoint in waypoints)
+        {
+            path.Add(waypoint.GetComponent<Waypoint>());
+        }
+    }
+
+    // Enemy spawns at first grid of path
+    void ReturnToStart()
+    {
+        transform.position = path[0].transform.position;
     }
 
     // Coroutine that waits X second after giving waypoint coordinates
@@ -34,6 +55,9 @@ public class EnemyMover : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        // Destroy enemy at end of path
+        Destroy(gameObject);
     }
 
     
