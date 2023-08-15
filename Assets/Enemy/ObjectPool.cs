@@ -6,7 +6,7 @@ public class ObjectPool : MonoBehaviour
 {
     // Fields for instantiating settings
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] int poolSize = 5;
+    [SerializeField] int poolSize = 5; // Sets a number of object in pool
     [SerializeField] float spawnTimer = 1f;
 
     GameObject[] pool;
@@ -21,6 +21,7 @@ public class ObjectPool : MonoBehaviour
         StartCoroutine(SpawnEnemy());
     }
 
+    // Manage enemy spawn with pool
     void PopulatePool()
     {
         pool = new GameObject[poolSize];
@@ -32,6 +33,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    // Reactivate enemy at start when end of path is reached 
     void EnableObjectInPool()
     {
         for(int i = 0; i < pool.Length; i++)

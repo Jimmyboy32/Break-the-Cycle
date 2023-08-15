@@ -56,7 +56,7 @@ public class EnemyMover : MonoBehaviour
             }
         }
 
-        // Destroy enemy at end of path
+        // Deactivate enemy object at end of path
         gameObject.SetActive(false);
     }
 

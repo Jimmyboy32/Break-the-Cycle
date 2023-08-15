@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int maxHitPoints = 5;
     [SerializeField] int currentHitPoints = 0;
     
+    // Reset enemy health On Enable instead of start 
     void OnEnable()
     {
         currentHitPoints = maxHitPoints;
