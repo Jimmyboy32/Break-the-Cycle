@@ -7,12 +7,19 @@ public class EnemyMover : MonoBehaviour
     // Creation of a list for the multiple waypoints of the grid
     [SerializeField] List<Waypoint> path = new List<Waypoint>();
     [SerializeField] [Range(0f, 5f)] float speed = 1f;
+
+    Enemy enemy;
   
     void OnEnable()
     {
         FindPath();
         ReturnToStart();
         StartCoroutine(FollowPath());
+    }
+
+    void Start()
+    {
+        enemy = GetComponent<Enemy>();
     }
 
     // Clearing of previous path and each new enemy will follow new path
@@ -57,8 +64,7 @@ public class EnemyMover : MonoBehaviour
         }
 
         // Deactivate enemy object at end of path
+        enemy.StealGold(); // Steal gold from player when destination is reached
         gameObject.SetActive(false);
     }
-
-    
 }
