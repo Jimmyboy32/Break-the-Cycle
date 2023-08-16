@@ -5,7 +5,7 @@ using UnityEngine;
 public class Waypoint : MonoBehaviour
 {
     // Sets tower has instantiated object
-    [SerializeField] GameObject towerPrefab; 
+    [SerializeField] Tower towerPrefab; 
 
     // If tower can be placed on tile
     [SerializeField] bool isPlaceable;
@@ -15,9 +15,8 @@ public class Waypoint : MonoBehaviour
     {
         if (isPlaceable)
         {
-            // Instantiate a tower on the clicked tile
-            Instantiate(towerPrefab, transform.position, Quaternion.identity);
-            isPlaceable = false;
+            bool isPlaced = towerPrefab.CreateTower(towerPrefab, transform.position);
+            isPlaceable = !isPlaced;
         }
     }
 }
